@@ -1,0 +1,224 @@
+:root {
+  --bg: #0b1020;
+  --panel: #121a33;
+  --panel-2: #17213f;
+  --text: #eef3ff;
+  --muted: #9ca8c7;
+  --line: #263458;
+  --accent: #7dd3fc;
+  --good: #22c55e;
+  --bad: #ef4444;
+  --warn: #f59e0b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: radial-gradient(circle at top left, #1e3a8a 0, #0b1020 38%, #050814 100%);
+  color: var(--text);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 48px 6vw 28px;
+  align-items: stretch;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(32px, 6vw, 64px);
+  line-height: 1;
+}
+
+.subhead {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.hero-card {
+  min-width: 240px;
+  max-width: 360px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(18, 26, 51, 0.78);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.hero-card strong { font-size: 22px; }
+.hero-card span { color: var(--muted); }
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding: 0 6vw 42px;
+}
+
+.panel {
+  background: rgba(18, 26, 51, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.24);
+}
+
+.wide-panel { grid-column: 1 / -1; }
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 22px;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+input, select, textarea, button {
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  padding: 12px 13px;
+  font: inherit;
+}
+
+textarea { resize: vertical; }
+
+.wide { grid-column: 1 / -1; }
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  font-weight: 800;
+}
+
+button:hover { filter: brightness(1.08); }
+button.danger { background: linear-gradient(135deg, #ef4444, #991b1b); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.hint {
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metric {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.metric span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.metric strong {
+  font-size: 24px;
+}
+
+.diagnosis {
+  margin: 18px 0;
+  padding: 16px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 16px;
+  color: #fde68a;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 960px;
+}
+
+th, td {
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 10px;
+  font-size: 14px;
+}
+
+th {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.profit { color: var(--good); font-weight: 800; }
+.loss { color: var(--bad); font-weight: 800; }
+.grade-a { color: var(--good); font-weight: 900; }
+.grade-b { color: #84cc16; font-weight: 900; }
+.grade-c { color: var(--warn); font-weight: 900; }
+.grade-d, .grade-f { color: var(--bad); font-weight: 900; }
+
+.small-btn {
+  padding: 7px 10px;
+  font-size: 12px;
+  border-radius: 9px;
+}
+
+footer {
+  padding: 24px 6vw 42px;
+  color: var(--muted);
+}
+
+canvas {
+  width: 100%;
+  background: rgba(23, 33, 63, 0.35);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 8px;
+}
+
+@media (max-width: 900px) {
+  .hero { flex-direction: column; }
+  .layout { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-form { grid-template-columns: 1fr; }
+}
