@@ -1,16 +1,11 @@
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
+node_modules
+.next
+.env
+*.db
+*.db-journal
 *.log
-
-# Local exports
-exports/
-*.local.csv
-
-# Python cache
-__pycache__/
-*.py[cod]
-.venv/
-venv/
+*.tsbuildinfo
+coverage
+dist
+outputs
+work
