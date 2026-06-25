@@ -1,4 +1,0 @@
-date,league,match,market,pick,odds,stake,bankroll_before,result,profit_loss,pre_match_reason,information_quality,market_logic,discipline_flags
-2026-05-01,英超,Arsenal vs Liverpool,胜平负,主胜,2.05,100,10000,win,105,主队阵容完整，客队连续一周双赛存在体能劣势，盘口从平半升到半球，赔率位置合理。,4,4,正常
-2026-05-02,德甲,Dortmund vs Leverkusen,半全场,平负,5.8,300,10105,loss,-300,觉得会爆冷，临场想搏高赔。,1,1,"冲动,追回"
-2026-05-03,西甲,Real Madrid vs Valencia,大小球,大2.5,1.86,80,9805,win,68.8,皇马主场进攻效率稳定，对手防线伤停两人，盘口维持高位但大球水位下降。,4,3,正常

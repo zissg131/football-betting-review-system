@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Match {
+  id                   String      @id @default(cuid())
+  competition          String
+  kickoffTime          DateTime
+  homeTeam             String
+  awayTeam             String
+  homeRank             Int?
+  awayRank             Int?
+  homeScore            Int?
+  awayScore            Int?
+  status               String      @default("scheduled")
+  preMatchSummary      String      @default("")
+  fundamentalAnalysis  String      @default("")
+  oddsAnalysis         String      @default("")
+  overUnderAnalysis    String      @default("")
+  gameScriptAnalysis   String      @default("")
+  recommendedPick      String      @default("")
+  predictedScore       String      @default("")
+  confidenceLevel      Int         @default(3)
+  reviewText           String      @default("")
+  mistakeTags          String      @default("[]")
+  successTags          String      @default("[]")
+  nextActionText       String      @default("")
+  homeFormation        String      @default("")
+  awayFormation        String      @default("")
+  homeKeyAbsences      String      @default("[]")
+  awayKeyAbsences      String      @default("[]")
+  homeRotationCount    Int         @default(0)
+  awayRotationCount    Int         @default(0)
+  homeHasMainStriker   Boolean     @default(true)
+  awayHasMainStriker   Boolean     @default(true)
+  homeMainKeeperStarts Boolean     @default(true)
+  awayMainKeeperStarts Boolean     @default(true)
+  lineupImpactScore    Int         @default(50)
+  lineupNotes          String      @default("")
+  expectedTotalCorners Float?
+  homeCornerAdvantage  Float?
+  awayCornerAdvantage  Float?
+  cornerPick           String      @default("")
+  cornerRisk           String      @default("")
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+  bets                 Bet[]
+  oddsSnapshots        OddsSnapshot[]
+
+  @@index([competition])
+  @@index([kickoffTime])
+  @@index([status])
+  @@index([homeTeam, awayTeam])
+}
+
+model Bet {
+  id          String     @id @default(cuid())
+  matchId     String
+  match       Match      @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  betTime     DateTime   @default(now())
+  marketType  String     @default("custom")
+  selection   String
+  line        Float?
+  odds        Float
+  stake       Float
+  entryOdds   Float?
+  closingOdds Float?
+  entryLine   Float?
+  closingLine Float?
+  clvValue    Float?
+  clvResult   String?
+  modelScore  Int?
+  winScore    Int?
+  valueScore  Int?
+  executionScore Int?
+  recommendedStructure String @default("")
+  result      String     @default("pending")
+  profit      Float      @default(0)
+  roi         Float      @default(0)
+  tags        String     @default("[]")
+  errorTags   String     @default("[]")
+  notes       String     @default("")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([matchId])
+  @@index([marketType])
+  @@index([result])
+  @@index([betTime])
+  @@index([clvResult])
+}
+
+model OddsSnapshot {
+  id               String   @id @default(cuid())
+  matchId          String
+  match            Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  phase            String   @default("current")
+  snapshotTime     DateTime @default(now())
+  source           String   @default("")
+  homeWinOdds      Float?
+  drawOdds         Float?
+  awayWinOdds      Float?
+  asianLine        Float?
+  asianHomeOdds    Float?
+  asianAwayOdds    Float?
+  overUnderLine    Float?
+  overOdds         Float?
+  underOdds        Float?
+  homeCornerLine   Float?
+  awayCornerLine   Float?
+  totalCornerLine  Float?
+  notes            String   @default("")
+
+  @@index([matchId])
+  @@index([phase])
+  @@index([snapshotTime])
+}
